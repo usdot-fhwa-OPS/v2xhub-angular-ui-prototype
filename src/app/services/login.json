@@ -1,0 +1,17 @@
+{
+    "header": {
+        "type": "Command",
+        "subtype": "Execute",
+        "encoding": "jsonstring",
+        "timestamp": "1714745817669",
+        "flags": "0"
+    },
+    "payload": {
+        "command": "login",
+        "id": "4",
+        "args": {
+            "user": "user",
+            "password": "user"
+        }
+    }
+}
