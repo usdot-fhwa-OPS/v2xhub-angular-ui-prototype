@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserCredentials } from '../../interfaces/user-credentials';
 import { TelemetryService } from '../../services/telemetry.service';
-import { JsonPipe } from '@angular/common';
-
+import {MatInputModule} from '@angular/material/input';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatInputModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

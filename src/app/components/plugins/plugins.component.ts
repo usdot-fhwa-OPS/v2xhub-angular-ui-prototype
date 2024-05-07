@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TelemetryService } from '../../services/telemetry.service';
 import { FormsModule } from '@angular/forms';
+import { PluginComponent } from '../../component/plugin/plugin.component';
 
 @Component({
   selector: 'app-plugins',
@@ -10,13 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './plugins.component.css'
 })
 export class PluginsComponent {
-  message: string ="";
+  plugins: Array<PluginComponent> = new Array();
+
   constructor(private tservice: TelemetryService) {
     tservice.connect();
     console.log("Web Socket connected");
   }
   
-  sendText(): void {
-    this.tservice.sendMsg(this.message);
+  processPluginUpdate(update: Object): void {
+    console.log("Processing update " + JSON.stringify(update) + " ...")
   }
 }
