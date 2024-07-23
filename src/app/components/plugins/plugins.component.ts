@@ -14,7 +14,6 @@ export class PluginsComponent {
   plugins: Array<PluginComponent> = new Array();
 
   constructor(private tservice: TelemetryService) {
-    tservice.connect();
     console.log("Web Socket connected");
   }
   

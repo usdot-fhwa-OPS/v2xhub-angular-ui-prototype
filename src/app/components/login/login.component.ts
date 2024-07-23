@@ -14,7 +14,6 @@ export class LoginComponent {
   userCred: UserCredentials = { username:'', password:''};
 
   constructor( private tSerivice: TelemetryService ) {
-    this.tSerivice.connect();
   }
 
   private generateLoginCommand(): Object {
