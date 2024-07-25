@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserCredentials } from '../../interfaces/user-credentials';
-import { TelemetryService } from '../../services/telemetry.service';
+import { TelemetryService } from '../../services/telemetry/telemetry.service';
 import {MatInputModule} from '@angular/material/input';
 @Component({
   selector: 'app-login',

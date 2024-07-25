@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket'
+import { PluginService } from '../plugin/plugin.service';
+import { Plugin } from '../../interfaces/plugin';
 
 const WEBSOCKET_URL = "wss://127.0.0.1:19760";
 
-export interface Message {
-  author: string;
-  message: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +15,8 @@ export class TelemetryService {
   private isConnected: boolean = false;
 
   private msgBuffer: string = "";
+
+  private pluginService: PluginService = new PluginService();
 
   constructor( ) { 
     this.socket = webSocket<string>({
@@ -79,16 +79,17 @@ export class TelemetryService {
       let messageObject = JSON.parse(msg);
       console.log("Parsed JSON ", messageObject);
       if (messageObject.header.type.toUpperCase() == "TELEMETRY") {
-        if (messageObject.header.subtype.toUpperCase() === "LIST") {
+        if (messageObject.header.subtype.toUpperCase() == "LIST") {
+          this.pluginService.processPlugins(messageObject.payload)
           // Handle List Message 
         }
-        else if (messageObject.header.subtype.toUpperCase() === "STATUS") {
+        else if (messageObject.header.subtype.toUpperCase() == "STATUS") {
           // Handle Status Message
         }
-        else if (messageObject.header.subtype.toUpperCase() === "STATE") {
+        else if (messageObject.header.subtype.toUpperCase() == "STATE") {
           // Handle State Message
         }
-        else if (messageObject.header.subtype.toUpperCase() === "CONFIG") {
+        else if (messageObject.header.subtype.toUpperCase() == "CONFIG") {
           // Handle Config Message
         }
         else {

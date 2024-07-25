@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TelemetryService } from '../../services/telemetry.service';
+import { TelemetryService } from '../../services/telemetry/telemetry.service';
 import { FormsModule } from '@angular/forms';
 import { PluginComponent } from '../../component/plugin/plugin.component';
 
