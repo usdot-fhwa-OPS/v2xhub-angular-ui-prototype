@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket'
 import { PluginService } from '../plugin/plugin.service';
-import { Plugin } from '../../interfaces/plugin';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 const WEBSOCKET_URL = "wss://127.0.0.1:19760";
 
@@ -16,9 +16,8 @@ export class TelemetryService {
 
   private msgBuffer: string = "";
 
-  private pluginService: PluginService = new PluginService();
 
-  constructor( ) { 
+  constructor( private injector: Injector ) { 
     this.socket = webSocket<string>({
       url: WEBSOCKET_URL,
       protocol: "base64",
@@ -80,7 +79,7 @@ export class TelemetryService {
       console.log("Parsed JSON ", messageObject);
       if (messageObject.header.type.toUpperCase() == "TELEMETRY") {
         if (messageObject.header.subtype.toUpperCase() == "LIST") {
-          this.pluginService.processPlugins(messageObject.payload)
+          this.injector.get<PluginService>(PluginService).processPlugins(messageObject.payload)
           // Handle List Message 
         }
         else if (messageObject.header.subtype.toUpperCase() == "STATUS") {
@@ -96,6 +95,10 @@ export class TelemetryService {
           // None of the above
         }
         console.log("Payload : " + messageObject.payload);
+      } else if (messageObject.header.type.toUpperCase() == "COMMAND"){
+        if (messageObject.header.subtype.toUpperCase() == "EXECUTE") {
+          this.injector.get<AuthenticationService>(AuthenticationService).loginResponse(messageObject.payload);
+        }
       }
     }
   }

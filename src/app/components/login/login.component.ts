@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserCredentials } from '../../interfaces/user-credentials';
-import { TelemetryService } from '../../services/telemetry/telemetry.service';
 import {MatInputModule} from '@angular/material/input';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,30 +13,10 @@ import {MatInputModule} from '@angular/material/input';
 export class LoginComponent {
   userCred: UserCredentials = { username:'', password:''};
 
-  constructor( private tSerivice: TelemetryService ) {
-  }
-
-  private generateLoginCommand(): Object {
-    return {
-        header: {
-            type: "Command",
-            subtype: "Execute",
-            encoding: "jsonstring",
-            timestamp: (new Date).getTime(),
-            flags: "0"
-        },
-        payload: {
-              command: "login",
-              id: "0",
-              args: {
-                  user: this.userCred.username,
-                  password: this.userCred.password
-              }
-          }
-      } ;
+  constructor( private authService: AuthenticationService ) {
   }
 
   login() {
-    this.tSerivice.sendMsg(this.generateLoginCommand());
+    this.authService.login(this.userCred.username, this.userCred.password);
   }
 }
