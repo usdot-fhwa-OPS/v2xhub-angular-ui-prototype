@@ -1,23 +1,24 @@
 import { Component } from '@angular/core';
-import { TelemetryService } from '../../services/telemetry/telemetry.service';
 import { FormsModule } from '@angular/forms';
-import { PluginComponent } from '../../component/plugin/plugin.component';
+import { Plugin } from '../../interfaces/plugin';
+import { NgFor } from '@angular/common';
+import { PluginService } from '../../services/plugin/plugin.service';
+import { PluginComponent } from '../plugin/plugin.component';
 
 @Component({
   selector: 'app-plugins',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,PluginComponent, NgFor],
   templateUrl: './plugins.component.html',
   styleUrl: './plugins.component.css'
 })
 export class PluginsComponent {
-  plugins: Array<PluginComponent> = new Array();
+  pluginsList: Array<Plugin> = new Array();
 
-  constructor(private tservice: TelemetryService) {
-    console.log("Web Socket connected");
+  constructor(private pluginService: PluginService) {
+    console.log("Getting plugin data from plugin service");
+    this.pluginsList = pluginService.getPlugins();
   }
   
-  processPluginUpdate(update: Object): void {
-    console.log("Processing update " + JSON.stringify(update) + " ...")
-  }
+  
 }

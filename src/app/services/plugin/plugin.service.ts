@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Plugin } from '../../interfaces/plugin';
 
 @Injectable({
@@ -19,9 +19,11 @@ export class PluginService {
       let castPlugin = pluginObject as Plugin;
       castPlugin.name = pluginName;
       this.plugins.push(castPlugin)
-
     }
-    
+  }
+
+  getPlugins(): Plugin[] {
+    return this.plugins;
   }
   
 }
