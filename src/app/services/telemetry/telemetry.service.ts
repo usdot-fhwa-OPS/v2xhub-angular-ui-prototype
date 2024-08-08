@@ -89,6 +89,8 @@ export class TelemetryService {
           // Handle State Message
         }
         else if (messageObject.header.subtype.toUpperCase() == "CONFIG") {
+          this.injector.get<PluginService>(PluginService).processConfigurations(messageObject.payload)
+
           // Handle Config Message
         }
         else {

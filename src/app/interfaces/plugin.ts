@@ -1,3 +1,5 @@
+import { PluginConfiguration } from "./plugin-configuration"
+
 export interface Plugin{
     id: number,
     description: string,
@@ -8,5 +10,6 @@ export interface Plugin{
     manifest: string,
     maxMessageInterval: number,
     commandLineParamters: string,
-    name: string
+    name: string,
+    configuration: PluginConfiguration[]
 }

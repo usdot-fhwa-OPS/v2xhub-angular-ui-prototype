@@ -1,13 +1,13 @@
-<div class="login">
-    <div>
+<div class="login" >
+    <div class="login-input">
         <mat-label>Username</mat-label>
         <input type="text" matInput [(ngModel)]="userCred.username">
     </div>
-    <div>
+    <div class="login-input">
         <mat-label>Password</mat-label>
         <input type="text" matInput [(ngModel)]="userCred.password">
     </div>
-    <div>
+    <div class="login-input">
         <button type="button" class="btn btn-outline-dark" (click)="login()" >Login</button>
     </div>
 </div>

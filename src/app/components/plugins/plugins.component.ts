@@ -17,7 +17,11 @@ export class PluginsComponent {
 
   constructor(private pluginService: PluginService) {
     console.log("Getting plugin data from plugin service");
-    this.pluginsList = pluginService.getPlugins();
+    pluginService.plugins.subscribe((plugins) => {
+      this.pluginsList = pluginService.getPlugins();
+
+      
+    })
   }
   
   
