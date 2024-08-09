@@ -1,0 +1,49 @@
+.logoImage{
+    float:right;
+    margin-right: .5em;
+    margin-top: .5em;
+    height: 70px;
+}
+
+.ipInputDiv {
+    margin-left: 1em;
+    vertical-align: middle;
+    width:100%;
+}
+
+.ipInput {
+    border-radius: 0.2em !important;
+    text-align: center;
+    vertical-align: middle;
+}
+.headertop
+{
+    height:3em;
+}
+.headermiddle
+{
+    height:1.5em;
+}
+.headerbottom
+{
+    height:1em;    
+}
+.headercontainer{
+    height:5.5em;
+    background-color: darkblue;
+}.headerlabel
+{
+    font-size: 1.3em !important;
+}
+.machinelabel
+{
+    font-size: 1em !important;
+}
+.timelabel
+{
+    font-size: .5em !important;
+}
+.versionlabel
+{
+    font-size: .5em !important;
+}

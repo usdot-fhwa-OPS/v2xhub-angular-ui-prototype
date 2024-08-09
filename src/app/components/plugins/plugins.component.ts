@@ -4,11 +4,12 @@ import { Plugin } from '../../interfaces/plugin';
 import { NgFor } from '@angular/common';
 import { PluginService } from '../../services/plugin/plugin.service';
 import { PluginComponent } from '../plugin/plugin.component';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-plugins',
   standalone: true,
-  imports: [FormsModule,PluginComponent, NgFor],
+  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent],
   templateUrl: './plugins.component.html',
   styleUrl: './plugins.component.css'
 })

@@ -1,4 +1,13 @@
 <mat-card appearance="outlined">
     <mat-card-title>{{ plugin.name }}</mat-card-title>
-    <app-plugin-configuration [pluginConfigurations]="plugin.configuration"></app-plugin-configuration>
+    <mat-accordion>
+        <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Plugin Configuration</mat-panel-title>
+
+            <mat-panel-description> Configuration Parameters for {{ plugin.name }}. </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-plugin-configuration [pluginConfigurations]="plugin.configuration"></app-plugin-configuration>
+        </mat-expansion-panel>
+    </mat-accordion>
 </mat-card>
