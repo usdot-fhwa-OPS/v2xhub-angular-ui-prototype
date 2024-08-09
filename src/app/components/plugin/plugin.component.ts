@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Plugin } from '../../interfaces/plugin';
 import { PluginConfigurationComponent } from "../plugin-configuration/plugin-configuration.component";
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 
