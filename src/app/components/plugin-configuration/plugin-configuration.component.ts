@@ -1,12 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { PluginConfiguration } from '../../interfaces/plugin-configuration';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { PluginService } from '../../services/plugin/plugin.service';
 
 
 @Component({
   selector: 'app-plugin-configuration',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, FormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './plugin-configuration.component.html',
   styleUrl: './plugin-configuration.component.css'
 })
@@ -15,7 +19,14 @@ export class PluginConfigurationComponent {
   @Input()
   pluginConfigurations: PluginConfiguration[] = new Array();
 
+  @Output()
+  pluginConfigurationChange = new EventEmitter<PluginConfiguration>();
+
   constructor() {
     
+  }
+
+  updateConfiguration(pluginConfig: PluginConfiguration) : void {
+    this.pluginConfigurationChange.emit(pluginConfig);
   }
 }

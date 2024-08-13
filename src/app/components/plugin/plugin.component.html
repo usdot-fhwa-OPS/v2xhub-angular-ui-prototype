@@ -7,7 +7,7 @@
 
             <mat-panel-description> Configuration Parameters for {{ plugin.name }}. </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-plugin-configuration [pluginConfigurations]="plugin.configuration"></app-plugin-configuration>
+        <app-plugin-configuration [pluginConfigurations]="plugin.configuration" (pluginConfigurationChange)="pluginConfigurationChange($event)"></app-plugin-configuration>
         </mat-expansion-panel>
     </mat-accordion>
 </mat-card>

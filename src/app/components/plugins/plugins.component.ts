@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { PluginService } from '../../services/plugin/plugin.service';
 import { PluginComponent } from '../plugin/plugin.component';
 import { HeaderComponent } from "../header/header.component";
+import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
 
 @Component({
   selector: 'app-plugins',
@@ -20,10 +21,11 @@ export class PluginsComponent {
     console.log("Getting plugin data from plugin service");
     pluginService.plugins.subscribe((plugins) => {
       this.pluginsList = pluginService.getPlugins();
-
-      
     })
   }
   
+  updateConfiguration(pluginConfigChange: PluginConfigurationChange): void {
+    this.pluginService.updatePluginConfiguration(pluginConfigChange);
+  }
   
 }
