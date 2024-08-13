@@ -1,2 +1,3 @@
 <app-header></app-header>
-<app-plugin *ngFor="let pluginItem of pluginsList" [plugin]="pluginItem" (onConfigChange)="updateConfiguration($event)"></app-plugin>
+<h2>Plugin Configuration</h2>	
+<app-plugin *ngFor="let pluginItem of displayedPluginList" [plugin]="pluginItem" (onConfigChange)="updateConfiguration($event)"></app-plugin>

@@ -1,17 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { Plugin } from '../../interfaces/plugin';
+import { Plugin, PluginState } from '../../interfaces/plugin';
 import { PluginConfigurationComponent } from "../plugin-configuration/plugin-configuration.component";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PluginConfiguration } from '../../interfaces/plugin-configuration';
 import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
 @Component({
   selector: 'app-plugin',
   standalone: true,
-  imports: [MatCardModule, PluginConfigurationComponent, MatExpansionModule],
+  imports: [MatCardModule, PluginConfigurationComponent, MatExpansionModule, MatSlideToggleModule],
   templateUrl: './plugin.component.html',
   styleUrl: './plugin.component.css'
 })
@@ -30,5 +32,9 @@ export class PluginComponent {
     pluginConfigChange.key = pluginConfig.name;
     pluginConfigChange.value = pluginConfig.value;
     this.onConfigChange.emit(pluginConfigChange);
+  }
+
+  isEnabled(): boolean {
+    return this.plugin.enabled == "Enabled";
   }
 }

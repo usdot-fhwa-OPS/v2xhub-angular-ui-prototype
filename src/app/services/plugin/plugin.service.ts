@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { Plugin } from '../../interfaces/plugin';
+import { Plugin, PluginState } from '../../interfaces/plugin';
 import { PluginConfiguration } from '../../interfaces/plugin-configuration';
 import { BehaviorSubject } from 'rxjs';
 import { TelemetryService } from '../telemetry/telemetry.service';
@@ -57,6 +57,20 @@ export class PluginService {
         pluginConfigurationArray.push(castPluginConfiguration);
       }
       pluginMap.get(pluginName)!.configuration = pluginConfigurationArray;
+    }
+    this.pluginsSubject.next(pluginMap);
+
+  }
+
+  processPluginState(list: Object): void {
+    console.log("Plugin State found in list " + Object.keys(list));
+    let pluginMap = this.pluginsSubject.value;
+    for (const pluginName of Object.keys(list)) {
+      // TODO: Fix all this casting. Is there a better way to do this
+      console.log("Attemtping to retreive state for " + pluginName + " from state list");
+      let pluginState = list[pluginName as keyof typeof list];
+      let pluginStateObject = pluginState as Object;
+      pluginMap.get(pluginName)!.state = pluginStateObject as PluginState;
     }
     this.pluginsSubject.next(pluginMap);
 

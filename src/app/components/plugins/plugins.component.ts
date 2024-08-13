@@ -17,10 +17,29 @@ import { PluginConfigurationChange } from '../../events/plugin.configuration.cha
 export class PluginsComponent {
   pluginsList: Array<Plugin> = new Array();
 
+  displayedPluginList: Array<Plugin> = new Array();
+
+  showEnabled: boolean = true;
+  
+  showDisabled: boolean = false;
+
+  showExternal: boolean = false;
+
   constructor(private pluginService: PluginService) {
     console.log("Getting plugin data from plugin service");
     pluginService.plugins.subscribe((plugins) => {
       this.pluginsList = pluginService.getPlugins();
+      for (let plugin of this.pluginsList) {
+        if (this.showEnabled && plugin.enabled == "Enabled") {
+          this.displayedPluginList.push(plugin);
+        }
+        if (this.showDisabled && plugin.enabled == "Disabled") {
+          this.displayedPluginList.push(plugin);
+        }
+        if (this.showExternal && plugin.enabled == "External") {
+          this.displayedPluginList.push(plugin)
+        }
+      }
     })
   }
   

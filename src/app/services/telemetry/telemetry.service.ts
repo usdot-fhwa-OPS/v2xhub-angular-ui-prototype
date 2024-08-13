@@ -79,7 +79,7 @@ export class TelemetryService {
       console.log("Parsed JSON ", messageObject);
       if (messageObject.header.type.toUpperCase() == "TELEMETRY") {
         if (messageObject.header.subtype.toUpperCase() == "LIST") {
-          this.injector.get<PluginService>(PluginService).processPlugins(messageObject.payload)
+          this.injector.get<PluginService>(PluginService).processPlugins(messageObject.payload);
           // Handle List Message 
         }
         else if (messageObject.header.subtype.toUpperCase() == "STATUS") {
@@ -87,9 +87,10 @@ export class TelemetryService {
         }
         else if (messageObject.header.subtype.toUpperCase() == "STATE") {
           // Handle State Message
+          this.injector.get<PluginService>(PluginService).processPluginState(messageObject.payload);
         }
         else if (messageObject.header.subtype.toUpperCase() == "CONFIG") {
-          this.injector.get<PluginService>(PluginService).processConfigurations(messageObject.payload)
+          this.injector.get<PluginService>(PluginService).processConfigurations(messageObject.payload);
 
           // Handle Config Message
         }
