@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { Plugin, PluginState } from '../../interfaces/plugin';
+import { Plugin } from '../../interfaces/plugin';
 import { PluginConfigurationComponent } from "../plugin-configuration/plugin-configuration.component";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PluginConfiguration } from '../../interfaces/plugin-configuration';

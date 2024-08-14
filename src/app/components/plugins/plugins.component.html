@@ -1,11 +1,12 @@
 <app-header></app-header>
 <h2>Plugin Configuration</h2>
-<div>
-    <h3>PLUGIN FILTERS : </h3>
+<div class="plugin-filter-container">
+    <h3 class="plugin-filter-item">FILTER PLUGINS</h3>
     <mat-button-toggle-group
     name="ingredients"
     aria-label="Ingredients"
     multiple
+    class="plugin-filter-item"
     [(ngModel)]="pluginFilter"
     (change)="updateDisplayedPlugins()"
   >
@@ -13,5 +14,10 @@
     <mat-button-toggle value="Disabled">DISABLED</mat-button-toggle>
     <mat-button-toggle value="External" >EXTERNAL</mat-button-toggle>
     </mat-button-toggle-group>
-</div>	
-<app-plugin *ngFor="let pluginItem of displayedPluginList" [plugin]="pluginItem" (onConfigChange)="updateConfiguration($event)"></app-plugin>
+</div>
+<div class="plugin-list">
+    <ng-container *ngFor="let pluginItem of displayedPluginList" > 
+        <app-plugin class="plugin-list-item"  [plugin]="pluginItem" (onConfigChange)="updateConfiguration($event)">
+        </app-plugin>
+    </ng-container>
+</div>

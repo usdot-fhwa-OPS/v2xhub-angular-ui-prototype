@@ -1,0 +1,23 @@
+.plugin-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px;
+    outline: auto;
+}
+
+.plugin-list-item{
+   margin:10px
+}
+.plugin-filter-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 10px;
+    outline: auto;
+}
+.plugin-filter-item{
+    min-height: 100%;
+    margin: 10px;
+    align-self: center;
+}

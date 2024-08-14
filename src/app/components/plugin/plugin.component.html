@@ -1,15 +1,14 @@
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" class="plugin">
     <mat-card-title>
         {{ plugin.name }}
         <mat-slide-toggle
-        class="example-margin"
         [checked]="isEnabled()">
         {{ plugin.enabled }}</mat-slide-toggle>
         
     </mat-card-title>
 
     <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel class="plugin-configuration">
         <mat-expansion-panel-header>
             <mat-panel-title>Plugin Configuration</mat-panel-title>
 
