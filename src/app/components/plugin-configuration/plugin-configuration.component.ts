@@ -4,7 +4,6 @@ import { PluginConfiguration } from '../../interfaces/plugin-configuration';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PluginService } from '../../services/plugin/plugin.service';
 
 
 @Component({

@@ -6,11 +6,12 @@ import { PluginService } from '../../services/plugin/plugin.service';
 import { PluginComponent } from '../plugin/plugin.component';
 import { HeaderComponent } from "../header/header.component";
 import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-plugins',
   standalone: true,
-  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent],
+  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent, MatButtonToggleModule ],
   templateUrl: './plugins.component.html',
   styleUrl: './plugins.component.css'
 })
@@ -18,33 +19,28 @@ export class PluginsComponent {
   pluginsList: Array<Plugin> = new Array();
 
   displayedPluginList: Array<Plugin> = new Array();
-
-  showEnabled: boolean = true;
-  
-  showDisabled: boolean = false;
-
-  showExternal: boolean = false;
+  // Default to show only enabled plugins
+  pluginFilter: Array<string> = [ "Enabled"];
 
   constructor(private pluginService: PluginService) {
-    console.log("Getting plugin data from plugin service");
     pluginService.plugins.subscribe((plugins) => {
       this.pluginsList = pluginService.getPlugins();
-      for (let plugin of this.pluginsList) {
-        if (this.showEnabled && plugin.enabled == "Enabled") {
-          this.displayedPluginList.push(plugin);
-        }
-        if (this.showDisabled && plugin.enabled == "Disabled") {
-          this.displayedPluginList.push(plugin);
-        }
-        if (this.showExternal && plugin.enabled == "External") {
-          this.displayedPluginList.push(plugin)
-        }
-      }
+      this.updateDisplayedPlugins();
     })
   }
   
   updateConfiguration(pluginConfigChange: PluginConfigurationChange): void {
     this.pluginService.updatePluginConfiguration(pluginConfigChange);
+  }
+
+  updateDisplayedPlugins(): void {
+    this.displayedPluginList = new Array();
+    console.log("Plugin filter %s", this.pluginFilter)
+    for(let plugin of this.pluginsList) {
+      if (this.pluginFilter.includes(plugin.enabled)) {
+        this.displayedPluginList.push(plugin);
+      }
+    }
   }
   
 }
