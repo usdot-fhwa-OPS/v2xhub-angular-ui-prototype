@@ -94,6 +94,9 @@ export class TelemetryService {
 
           // Handle Config Message
         }
+        else if (messageObject.header.subtype.toUpperCase() == "MESSAGES") {
+          this.injector.get<PluginService>(PluginService).processPluginMessages(messageObject.payload);
+        }
         else {
           // None of the above
         }

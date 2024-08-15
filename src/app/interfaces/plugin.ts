@@ -1,4 +1,6 @@
+import { Stack } from "../data/stack";
 import { PluginConfiguration } from "./plugin-configuration"
+import { PluginMessage } from "./plugin-message";
 export enum PluginState {
     Unkown = "Unknown",
     Started = "Started, waiting for connection...",
@@ -21,4 +23,5 @@ export class Plugin{
     commandLineParamters: string = "";
     name: string = ""; 
     configuration: PluginConfiguration[] = new Array();
+    messages: Map<number,Stack<PluginMessage>> = new Map();
 }

@@ -35,3 +35,6 @@ $v2xhub-angular-ui-prototype-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($v2xhub-angular-ui-prototype-theme);
 
+@import "primeicons/primeicons.css";
+
+

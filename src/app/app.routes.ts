@@ -2,12 +2,19 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { PluginsComponent } from './components/plugins/plugins.component';
+import { PluginDisplayComponent } from './components/plugin-display/plugin-display.component';
 
 export const routes: Routes = [
     {
         path: '',
         title: 'V2X-Hub Main',
         component: PluginsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'plugin/:pluginName',
+        title: ':pluginName',
+        component: PluginDisplayComponent,
         canActivate: [AuthGuard]
     },
     {

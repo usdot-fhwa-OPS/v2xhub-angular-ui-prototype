@@ -4,7 +4,10 @@
         <mat-slide-toggle
         [checked]="isEnabled()">
         {{ plugin.enabled }}</mat-slide-toggle>
-        
+        <button mat-fab extended (click)="navigatePluginDisplay()">
+            <mat-icon>monitoring</mat-icon>
+            Display
+        </button>
     </mat-card-title>
 
     <mat-accordion>
@@ -12,7 +15,7 @@
         <mat-expansion-panel-header>
             <mat-panel-title>Plugin Configuration</mat-panel-title>
 
-            <mat-panel-description> Configuration Parameters for {{ plugin.name }}. </mat-panel-description>
+            <mat-panel-description> Configuration Parameters for {{ plugin.name }}.</mat-panel-description>
         </mat-expansion-panel-header>
         <app-plugin-configuration [pluginConfigurations]="plugin.configuration" (pluginConfigurationChange)="pluginConfigurationChange($event)"></app-plugin-configuration>
         </mat-expansion-panel>

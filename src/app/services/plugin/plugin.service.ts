@@ -4,6 +4,8 @@ import { PluginConfiguration } from '../../interfaces/plugin-configuration';
 import { BehaviorSubject } from 'rxjs';
 import { TelemetryService } from '../telemetry/telemetry.service';
 import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
+import { PluginMessage } from '../../interfaces/plugin-message';
+import { Stack } from '../../data/stack';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +73,39 @@ export class PluginService {
       let pluginState = list[pluginName as keyof typeof list];
       let pluginStateObject = pluginState as Object;
       pluginMap.get(pluginName)!.state = pluginStateObject as PluginState;
+    }
+    this.pluginsSubject.next(pluginMap);
+
+  }
+
+
+  processPluginMessages(list: Object): void {
+    console.log("Plugins Messages found in list " + Object.keys(list));
+    let pluginMap = this.pluginsSubject.value;
+    for (const pluginName of Object.keys(list)) {
+      // TODO: Fix all this casting. Is there a better way to do this
+      console.log("Attemtping to Messages configurations for " + pluginName + " from configuration list");
+      let pluginMessages = list[pluginName as keyof typeof list];
+      let pluginMessagesObject = pluginMessages as Object;
+      let pluginMessagesArray = pluginMessagesObject as PluginMessage[];
+      let existingPluginMessagesArray: Map<number, Stack<PluginMessage>>;
+
+      if (pluginMap.get(pluginName)!.messages) {
+        existingPluginMessagesArray = pluginMap.get(pluginName)!.messages;
+      } else {
+        existingPluginMessagesArray = new Map();
+      }
+      for (const pluginMessage of pluginMessagesArray) {
+        if (existingPluginMessagesArray.get(pluginMessage.id)) {
+          existingPluginMessagesArray.get(pluginMessage.id)!.push(pluginMessage);
+        } else {
+          let newStack = new Stack<PluginMessage>(50);
+          newStack.push(pluginMessage);
+          existingPluginMessagesArray.set(pluginMessage.id, newStack);
+        }
+      }
+      console.log("Updating messages for plugin %s to %d", pluginName, existingPluginMessagesArray.size)
+      pluginMap.get(pluginName)!.messages = existingPluginMessagesArray;
     }
     this.pluginsSubject.next(pluginMap);
 
