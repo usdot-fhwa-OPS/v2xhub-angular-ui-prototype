@@ -115,6 +115,10 @@ export class PluginService {
     return Array.from(this.pluginsSubject.value.values());
   }
 
+  getPlugin(name: string): Plugin {
+    return this.pluginsSubject.value.get(name)!;
+  }
+
   updatePluginConfiguration(pluginConfigChange: PluginConfigurationChange): void {
     let loginRequest = {
       header: {
