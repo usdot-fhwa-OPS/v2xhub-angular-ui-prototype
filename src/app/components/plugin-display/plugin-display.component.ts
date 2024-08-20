@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input as RouterInput  } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { Stack } from '../../data/stack';
 import { PluginMessage } from '../../interfaces/plugin-message';
 import { Plugin } from '../../interfaces/plugin';
 import { PluginService } from '../../services/plugin/plugin.service';
-import { Input as RouterInput } from '@angular/core'
 import { KeyValuePipe, NgFor } from '@angular/common';
-import { MessageIntervalData } from '../../interfaces/message-interval-data';
-import { MessageIntervalChartComponent } from '../message-interval-chart/message-interval-chart.component';
+import { MessageFrequencyData } from '../../interfaces/message-interval-data';
+import { MessageFrequencyChartComponent } from '../message-frequency-chart/message-frequency-chart.component';
 import { ChartModule } from 'primeng/chart';
 
 
 @Component({
   selector: 'app-plugin-display',
   standalone: true,
-  imports: [MessageIntervalChartComponent, HeaderComponent, NgFor, KeyValuePipe, ChartModule],
+  imports: [MessageFrequencyChartComponent, HeaderComponent, NgFor, KeyValuePipe, ChartModule],
   templateUrl: './plugin-display.component.html',
   styleUrl: './plugin-display.component.css'
 })
@@ -24,7 +23,7 @@ export class PluginDisplayComponent {
 
   plugin: Plugin = new Plugin();
 
-  msgData: Map<number, MessageIntervalData[]> = new Map();
+  msgData: Map<string, MessageFrequencyData[]> = new Map();
 
     
   constructor(private pluginService: PluginService) {
@@ -44,18 +43,23 @@ export class PluginDisplayComponent {
  * @param pluginMessages 
  * @returns 
  */
-function convertPluginMessagesToChartJSData(pluginMessages: Map<number, Stack<PluginMessage>>): Map<number, MessageIntervalData[]> {
-  let chartData = new Map<number, MessageIntervalData[] >()
+function convertPluginMessagesToChartJSData(pluginMessages: Map<number, Stack<PluginMessage>>): Map<string, MessageFrequencyData[]> {
+  let chartData = new Map<string, MessageFrequencyData[] >()
   pluginMessages.forEach((value: Stack<PluginMessage>, key: number) => {
     let messageData = new Array();
     let messageStack = value.toArray();
+    let messageName = ""
     messageStack.forEach((value: PluginMessage) => {
-      let msgData = new MessageIntervalData();
+      let msgData = new MessageFrequencyData();
       msgData.timestamp = value.lastTimestamp;
-      msgData.avgInterval = value.averageInterval;
+      // Convert ms interval to frequency
+      msgData.avgFrequency = 1/(value.averageInterval/1000);
       messageData.push(msgData);
+      if (messageName.length == 0) {
+        messageName = "Type: " + value.type + " Subtype : " + value.subtype; 
+      }
     })
-    chartData.set(key, messageData);
+    chartData.set(messageName, messageData);
 
   })
   return chartData;

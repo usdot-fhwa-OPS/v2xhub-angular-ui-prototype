@@ -99,7 +99,7 @@ export class PluginService {
         if (existingPluginMessagesArray.get(pluginMessage.id)) {
           existingPluginMessagesArray.get(pluginMessage.id)!.push(pluginMessage);
         } else {
-          let newStack = new Stack<PluginMessage>(50);
+          let newStack = new Stack<PluginMessage>(20);
           newStack.push(pluginMessage);
           existingPluginMessagesArray.set(pluginMessage.id, newStack);
         }

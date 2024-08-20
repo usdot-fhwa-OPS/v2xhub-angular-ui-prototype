@@ -1,4 +1,4 @@
-export class MessageIntervalData {
+export class MessageFrequencyData {
     timestamp: string = "";
-    avgInterval: number = 0;
+    avgFrequency: number = 0;
 }

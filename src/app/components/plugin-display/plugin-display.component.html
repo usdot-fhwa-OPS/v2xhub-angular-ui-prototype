@@ -1,5 +1,5 @@
 <app-header></app-header>
 
 <div *ngFor="let mapEntry of msgData | keyvalue" >
-    <app-message-interval-chart [messageIntervalData]="mapEntry.value" [messageId]="mapEntry.key"></app-message-interval-chart>
+    <app-message-frequency-chart [messageIntervalData]="mapEntry.value" [messageName]="mapEntry.key"></app-message-frequency-chart>
 </div>
