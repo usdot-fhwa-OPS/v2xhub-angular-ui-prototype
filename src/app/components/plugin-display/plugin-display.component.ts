@@ -1,20 +1,20 @@
 import { Component, Input as RouterInput  } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { Stack } from '../../data/stack';
 import { PluginMessage } from '../../interfaces/plugin-message';
 import { Plugin } from '../../interfaces/plugin';
 import { PluginService } from '../../services/plugin/plugin.service';
 import { KeyValuePipe, NgFor } from '@angular/common';
 import { MessageFrequencyData } from '../../interfaces/message-interval-data';
 import { MessageFrequencyChartComponent } from '../message-frequency-chart/message-frequency-chart.component';
-import { ChartModule } from 'primeng/chart';
 import { Queue } from '../../data/queue';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
   selector: 'app-plugin-display',
   standalone: true,
-  imports: [MessageFrequencyChartComponent, HeaderComponent, NgFor, KeyValuePipe, ChartModule],
+  imports: [MessageFrequencyChartComponent, HeaderComponent, NgFor, KeyValuePipe, CardModule, DividerModule],
   templateUrl: './plugin-display.component.html',
   styleUrl: './plugin-display.component.css'
 })

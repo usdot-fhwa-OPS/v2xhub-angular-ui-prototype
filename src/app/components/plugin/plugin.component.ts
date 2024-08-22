@@ -8,6 +8,7 @@ import { PluginConfigurationChange } from '../../events/plugin.configuration.cha
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -15,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-plugin',
   standalone: true,
-  imports: [MatCardModule, PluginConfigurationComponent, MatExpansionModule, MatSlideToggleModule, MatIconModule],
+  imports: [MatCardModule, PluginConfigurationComponent, MatExpansionModule, MatSlideToggleModule, MatIconModule, MatButtonModule],
   templateUrl: './plugin.component.html',
   styleUrl: './plugin.component.css'
 })

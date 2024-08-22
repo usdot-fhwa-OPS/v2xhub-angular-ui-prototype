@@ -1,5 +1,5 @@
 .logoImage{
-    float:right;
+    float:left;
     margin-right: .5em;
     margin-top: .5em;
     height: 70px;
@@ -15,6 +15,23 @@
     border-radius: 0.2em !important;
     text-align: center;
     vertical-align: middle;
+}
+.currLoginDiv {
+    display: inline;
+    float: right;
+    margin-right:2em;
+}
+.logoutBtn {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: 1px solid #FFFFFF;
+    border-left: 3px;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+    cursor:pointer;
+    overflow: hidden;
+    color:#FFF;
 }
 .headertop
 {

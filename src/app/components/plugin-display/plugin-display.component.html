@@ -1,2 +1,12 @@
 <app-header></app-header>
-<app-message-frequency-chart [allData]="msgData" ></app-message-frequency-chart>
+<p-card header="{{pluginName}}" >
+    
+    <p-card header="Message Frequencies" subheader="Time Series Received Message Frequency">
+        <app-message-frequency-chart [allData]="msgData"></app-message-frequency-chart>
+    </p-card>
+    <p-divider />
+
+    <p-card header="Plugin Status">
+        Status Information
+    </p-card>
+</p-card>

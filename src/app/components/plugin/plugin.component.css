@@ -1,13 +1,4 @@
-/* Order */
-@layer reset, primeng;
 
-/* Reset CSS */
-@layer reset {
-    button,
-    input {
-        /* CSS to Reset */
-    }
-}
 .plugin{
     background-color: lightblue;
 
@@ -15,4 +6,13 @@
 .plugin-configuration{
     background-color: lightskyblue;
 
+}
+
+.plugin-configuration-title {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px 5px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

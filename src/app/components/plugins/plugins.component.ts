@@ -6,12 +6,14 @@ import { PluginService } from '../../services/plugin/plugin.service';
 import { PluginComponent } from '../plugin/plugin.component';
 import { HeaderComponent } from "../header/header.component";
 import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @Component({
   selector: 'app-plugins',
   standalone: true,
-  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent, MatButtonToggleModule ],
+  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent, MatButtonToggleModule , MatTabsModule],
   templateUrl: './plugins.component.html',
   styleUrl: './plugins.component.css'
 })

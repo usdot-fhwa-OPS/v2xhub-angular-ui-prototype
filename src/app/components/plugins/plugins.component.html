@@ -1,23 +1,30 @@
 <app-header></app-header>
-<h2>Plugin Configuration</h2>
-<div class="plugin-filter-container">
-    <h3 class="plugin-filter-item">FILTER PLUGINS</h3>
-    <mat-button-toggle-group
-    name="ingredients"
-    aria-label="Ingredients"
-    multiple
-    class="plugin-filter-item"
-    [(ngModel)]="pluginFilter"
-    (change)="updateDisplayedPlugins()"
-  >
-    <mat-button-toggle value="Enabled" >ENABLED</mat-button-toggle>
-    <mat-button-toggle value="Disabled">DISABLED</mat-button-toggle>
-    <mat-button-toggle value="External" >EXTERNAL</mat-button-toggle>
-    </mat-button-toggle-group>
-</div>
-<div class="plugin-list">
-    <ng-container *ngFor="let pluginItem of displayedPluginList" > 
-        <app-plugin class="plugin-list-item"  [plugin]="pluginItem" (onConfigChange)="updateConfiguration($event)">
-        </app-plugin>
-    </ng-container>
-</div>
+<mat-tab-group mat-accent mat-stretch-tabs="false" >
+    <mat-tab mat-accent label="Plugin Configuration">
+        <div class="plugin-filter-container">
+            <h3 class="plugin-filter-item">FILTER PLUGINS</h3>
+            <mat-button-toggle-group
+            name="ingredients"
+            aria-label="Ingredients"
+            multiple
+            class="plugin-filter-item"
+            [(ngModel)]="pluginFilter"
+            (change)="updateDisplayedPlugins()"
+          >
+            <mat-button-toggle value="Enabled" >ENABLED</mat-button-toggle>
+            <mat-button-toggle value="Disabled">DISABLED</mat-button-toggle>
+            <mat-button-toggle value="External" >EXTERNAL</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div class="plugin-list">
+            <ng-container *ngFor="let pluginItem of displayedPluginList" > 
+                <app-plugin class="plugin-list-item"  [plugin]="pluginItem" (onConfigChange)="updateConfiguration($event)">
+                </app-plugin>
+            </ng-container>
+        </div>
+    </mat-tab>
+    <mat-tab label="Events">Events Content</mat-tab>
+    <mat-tab label="Messages">Message Content</mat-tab>
+    <mat-tab label="Users">User Content</mat-tab>
+
+  </mat-tab-group>

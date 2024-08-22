@@ -1,10 +1,11 @@
 <mat-card appearance="outlined" class="plugin">
-    <mat-card-title>
-        {{ plugin.name }}
+    <mat-card-title class="plugin-configuration-title" >
+        <div>{{ plugin.name }}</div>
         <mat-slide-toggle
-        [checked]="isEnabled()">
-        {{ plugin.enabled }}</mat-slide-toggle>
-        <button mat-fab extended (click)="navigatePluginDisplay()">
+            [checked]="isEnabled()">
+            {{ plugin.enabled }}
+        </mat-slide-toggle>
+        <button  mat-fab extended (click)="navigatePluginDisplay()">
             <mat-icon>monitoring</mat-icon>
             Display
         </button>

@@ -32,11 +32,24 @@ export class MessageFrequencyChartComponent implements OnChanges{
     this.chartOptions = {
       maintainAspectRatio: false,
       responsive: false,
+      animation: false,
       scales: {
         x: {
           // The axis for this scale is determined from the first letter of the id as `'x'`
           // It is recommended to specify `position` and / or `axis` explicitly.
           type: 'timeseries',
+          title: {
+            display:true,
+            text: "Time"
+          }
+        
+        },
+        y: {
+          title: {
+            display:true,
+
+            text: ' Message Frequency (Hz) '
+          }
         }
       }
     }
