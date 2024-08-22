@@ -1,3 +1,4 @@
+import { Queue } from "../data/queue";
 import { Stack } from "../data/stack";
 import { PluginConfiguration } from "./plugin-configuration"
 import { PluginMessage } from "./plugin-message";
@@ -23,5 +24,5 @@ export class Plugin{
     commandLineParamters: string = "";
     name: string = ""; 
     configuration: PluginConfiguration[] = new Array();
-    messages: Map<number,Stack<PluginMessage>> = new Map();
+    messages: Map<number,Queue<PluginMessage>> = new Map();
 }

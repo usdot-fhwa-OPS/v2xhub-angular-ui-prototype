@@ -19,10 +19,7 @@ class DataPoint{
 })
 export class MessageFrequencyChartComponent implements OnChanges{
   @Input()
-  messageIntervalData: MessageFrequencyData[] = new Array();
-
-  @Input()
-  messageName: string = "";
+  allData: Map<string, MessageFrequencyData[]> = new Map();
 
   chartData: Object = new Object();
 
@@ -47,17 +44,15 @@ export class MessageFrequencyChartComponent implements OnChanges{
 
   updateData(): void {
     this.chartData = {
-        datasets: [
-          {
-            label: this.messageName,
-            data: this.messageIntervalData.map(data => new DataPoint(data.timestamp, data.avgFrequency))
-          }
-        ]
+      datasets: Array.from(this.allData).map(([name, messageData]) => {
+        let dataset = {
+          label: name,
+          data: messageData.map(data => new DataPoint(data.timestamp, data.avgFrequency))
+        }
+        return dataset;
+      })    
     };
     if (this.chart) {
-      // this.chart.getCanvas().width = 100;
-      // this.chart.getCanvas().height = 100;
-      // this.chart.getCanvas().resize();
       this.chart.refresh();
     }
     

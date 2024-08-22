@@ -6,6 +6,7 @@ import { TelemetryService } from '../telemetry/telemetry.service';
 import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
 import { PluginMessage } from '../../interfaces/plugin-message';
 import { Stack } from '../../data/stack';
+import { Queue } from '../../data/queue';
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +89,7 @@ export class PluginService {
       let pluginMessages = list[pluginName as keyof typeof list];
       let pluginMessagesObject = pluginMessages as Object;
       let pluginMessagesArray = pluginMessagesObject as PluginMessage[];
-      let existingPluginMessagesArray: Map<number, Stack<PluginMessage>>;
+      let existingPluginMessagesArray: Map<number, Queue<PluginMessage>>;
 
       if (pluginMap.get(pluginName)!.messages) {
         existingPluginMessagesArray = pluginMap.get(pluginName)!.messages;
@@ -97,10 +98,10 @@ export class PluginService {
       }
       for (const pluginMessage of pluginMessagesArray) {
         if (existingPluginMessagesArray.get(pluginMessage.id)) {
-          existingPluginMessagesArray.get(pluginMessage.id)!.push(pluginMessage);
+          existingPluginMessagesArray.get(pluginMessage.id)!.enqueue(pluginMessage);
         } else {
-          let newStack = new Stack<PluginMessage>(20);
-          newStack.push(pluginMessage);
+          let newStack = new Queue<PluginMessage>(20);
+          newStack.enqueue(pluginMessage);
           existingPluginMessagesArray.set(pluginMessage.id, newStack);
         }
       }

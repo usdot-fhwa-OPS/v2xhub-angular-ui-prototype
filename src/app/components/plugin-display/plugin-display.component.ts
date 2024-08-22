@@ -8,6 +8,7 @@ import { KeyValuePipe, NgFor } from '@angular/common';
 import { MessageFrequencyData } from '../../interfaces/message-interval-data';
 import { MessageFrequencyChartComponent } from '../message-frequency-chart/message-frequency-chart.component';
 import { ChartModule } from 'primeng/chart';
+import { Queue } from '../../data/queue';
 
 
 @Component({
@@ -43,9 +44,9 @@ export class PluginDisplayComponent {
  * @param pluginMessages 
  * @returns 
  */
-function convertPluginMessagesToChartJSData(pluginMessages: Map<number, Stack<PluginMessage>>): Map<string, MessageFrequencyData[]> {
+function convertPluginMessagesToChartJSData(pluginMessages: Map<number, Queue<PluginMessage>>): Map<string, MessageFrequencyData[]> {
   let chartData = new Map<string, MessageFrequencyData[] >()
-  pluginMessages.forEach((value: Stack<PluginMessage>, key: number) => {
+  pluginMessages.forEach((value: Queue<PluginMessage>, key: number) => {
     let messageData = new Array();
     let messageStack = value.toArray();
     let messageName = ""
