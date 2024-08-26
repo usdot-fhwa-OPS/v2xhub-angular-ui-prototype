@@ -1,5 +1,4 @@
-import { Component, Input as RouterInput  } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { Component, Input } from '@angular/core';
 import { PluginMessage } from '../../interfaces/plugin-message';
 import { Plugin } from '../../interfaces/plugin';
 import { PluginService } from '../../services/plugin/plugin.service';
@@ -14,13 +13,13 @@ import { DividerModule } from 'primeng/divider';
 @Component({
   selector: 'app-plugin-display',
   standalone: true,
-  imports: [MessageFrequencyChartComponent, HeaderComponent, NgFor, KeyValuePipe, CardModule, DividerModule],
+  imports: [MessageFrequencyChartComponent, NgFor, KeyValuePipe, CardModule, DividerModule],
   templateUrl: './plugin-display.component.html',
   styleUrl: './plugin-display.component.css'
 })
 export class PluginDisplayComponent {
-  @RouterInput()
-  pluginName!: string;
+  @Input()
+  name!: string;
 
   plugin: Plugin = new Plugin();
 
@@ -29,15 +28,18 @@ export class PluginDisplayComponent {
     
   constructor(private pluginService: PluginService) {
     pluginService.plugins.subscribe((plugins) => {
-      console.log("Router input %s", this.pluginName);
-      if (this.pluginName) {
-        this.plugin = pluginService.getPlugin(this.pluginName);
+      console.log("Router input %s", this.name);
+      if (this.name) {
+        this.plugin = pluginService.getPlugin(this.name);
         if (this.plugin?.messages ) {
           this.msgData = convertPluginMessagesToChartJSData(this.plugin.messages);
         }
       }
     })
   }
+
+
+
 }
 /**
  * Function to convert Plugin Message Stack to array of MessageInterface data points for ChartJS

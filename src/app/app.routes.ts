@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { PluginsComponent } from './components/plugins/plugins.component';
-import { PluginDisplayComponent } from './components/plugin-display/plugin-display.component';
+import { PluginDisplayPageComponent } from './components/plugin-display-page/plugin-display-page.component';
 
 export const routes: Routes = [
     {
@@ -14,7 +14,7 @@ export const routes: Routes = [
     {
         path: 'plugin/:pluginName',
         title: ':pluginName',
-        component: PluginDisplayComponent,
+        component: PluginDisplayPageComponent,
         canActivate: [AuthGuard]
     },
     {
