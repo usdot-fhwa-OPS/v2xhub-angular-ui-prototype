@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { Plugin, PluginState } from '../../interfaces/plugin';
+import { Plugin, PluginState } from '../../classes/plugin/plugin';
 import { PluginConfiguration } from '../../interfaces/plugin-configuration';
 import { BehaviorSubject } from 'rxjs';
 import { TelemetryService } from '../telemetry/telemetry.service';

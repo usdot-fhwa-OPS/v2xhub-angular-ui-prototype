@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { PluginMessage } from '../../interfaces/plugin-message';
-import { Plugin } from '../../interfaces/plugin';
+import { Plugin } from '../../classes/plugin/plugin';
 import { PluginService } from '../../services/plugin/plugin.service';
-import { KeyValuePipe, NgFor } from '@angular/common';
-import { MessageFrequencyData } from '../../interfaces/message-interval-data';
+import { MessageFrequencyData } from '../../classes/plugin/message-interval-data';
 import { MessageFrequencyChartComponent } from '../message-frequency-chart/message-frequency-chart.component';
 import { Queue } from '../../data/queue';
 import { CardModule } from 'primeng/card';
@@ -13,7 +12,7 @@ import { DividerModule } from 'primeng/divider';
 @Component({
   selector: 'app-plugin-display',
   standalone: true,
-  imports: [MessageFrequencyChartComponent, NgFor, KeyValuePipe, CardModule, DividerModule],
+  imports: [MessageFrequencyChartComponent, CardModule, DividerModule],
   templateUrl: './plugin-display.component.html',
   styleUrl: './plugin-display.component.css'
 })

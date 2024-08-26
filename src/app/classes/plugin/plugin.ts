@@ -1,7 +1,6 @@
-import { Queue } from "../data/queue";
-import { Stack } from "../data/stack";
-import { PluginConfiguration } from "./plugin-configuration"
-import { PluginMessage } from "./plugin-message";
+import { Queue } from "../../data/queue";
+import { PluginConfiguration } from "../../interfaces/plugin-configuration"
+import { PluginMessage } from "../../interfaces/plugin-message";
 export enum PluginState {
     Unkown = "Unknown",
     Started = "Started, waiting for connection...",

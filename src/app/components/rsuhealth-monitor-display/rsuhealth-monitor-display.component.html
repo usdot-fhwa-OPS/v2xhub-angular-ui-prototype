@@ -1,1 +1,17 @@
-<p>rsuhealth-monitor-display works!</p>
+<p-card header="{{name}}" >
+    <p-card header="Message Frequencies" subheader="Time Series Received Message Frequency">
+        <app-message-frequency-chart [allData]="msgData"></app-message-frequency-chart>
+    </p-card>
+
+    <p-divider />
+
+    <p-card header="Plugin Status">
+        Status Information
+    </p-card>
+
+    <p-divider />
+
+    <p-card header="RSUs">
+        <app-map></app-map>
+    </p-card>
+</p-card>

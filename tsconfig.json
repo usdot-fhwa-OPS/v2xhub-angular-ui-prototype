@@ -13,6 +13,11 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
+/* ADDED for MapTiler sdk */
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+/* ADDED for MapTiler sdk */
+
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
@@ -27,6 +32,11 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    /* ADDED for MapTiler sdk */
+    "strictNullChecks": false
+    /* ADDED for MapTiler sdk */
+
+  
   }
 }

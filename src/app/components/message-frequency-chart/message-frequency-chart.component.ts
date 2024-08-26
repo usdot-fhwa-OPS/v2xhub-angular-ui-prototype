@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartModule, UIChart } from 'primeng/chart';
-import { MessageFrequencyData } from '../../interfaces/message-interval-data';
+import { MessageFrequencyData } from '../../classes/plugin/message-interval-data';
 import 'chartjs-adapter-date-fns';
 
 
