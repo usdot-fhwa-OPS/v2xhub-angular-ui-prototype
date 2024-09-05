@@ -1,35 +1,28 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { Map, MapStyle, config } from '@maptiler/sdk';
+import { Component } from '@angular/core';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import * as Leaflet from 'leaflet';
 
-import '@maptiler/sdk/dist/maptiler-sdk.css';
+
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [],
+  imports: [ LeafletModule ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
-export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
-  map: Map | undefined;
+export class MapComponent  {
 
-  @ViewChild('map')
-  private mapContainer!: ElementRef<HTMLElement>;
 
-  ngOnInit(): void {
-    config.apiKey = 'COPkJNS29P0QNE3nm0ac';
-  }
-  ngAfterViewInit() {
-    const initialState = { lng: -77.14795980908717, lat: 38.95605332297384, zoom: 16 };
+  public options = {
+    layers: [
+      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20, attribution: '...' })
+    ],
+    zoom: 17,
+    center: Leaflet.latLng(38.95605332297384, -77.14795980908717)
+  };
+  public layers = [
+    Leaflet.circle([ 38.95605332297384, -77.14795980908717 ], { radius: 100 }),
+    Leaflet.marker([ 38.95605332297384, -77.14795980908717 ])
+  ];
 
-    this.map = new Map({
-      container: this.mapContainer.nativeElement,
-      style: MapStyle.STREETS,
-      center: [initialState.lng, initialState.lat],
-      zoom: initialState.zoom
-    });
-  }
-
-  ngOnDestroy() {
-    this.map?.remove();
-  }
 }
