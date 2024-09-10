@@ -1,15 +1,5 @@
 <app-header></app-header>
 
 <div class="login" >
-    <div class="login-input">
-        <mat-label>Username</mat-label>
-        <input type="text" matInput [(ngModel)]="userCred.username">
-    </div>
-    <div class="login-input">
-        <mat-label>Password</mat-label>
-        <input type="text" matInput [(ngModel)]="userCred.password">
-    </div>
-    <div class="login-input">
-        <button type="button" class="btn btn-outline-dark" (click)="login()" >Login</button>
-    </div>
+    <app-auth-button></app-auth-button>
 </div>
