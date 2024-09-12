@@ -37,7 +37,9 @@ export class PluginDisplayComponent {
     })
   }
 
-
+  sendServerMessage(message: any): void {
+    this.pluginService.sendServerMessage(message)
+  }
 
 }
 /**

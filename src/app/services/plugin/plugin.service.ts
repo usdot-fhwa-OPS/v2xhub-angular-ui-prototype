@@ -135,7 +135,13 @@ export class PluginService {
             args: pluginConfigChange
         }
     };
+    console.log("Hello")
     this.injector.get<TelemetryService>(TelemetryService).sendMsg(loginRequest);
+  }
+
+  sendServerMessage(message: any): void {
+    console.log(message);
+    this.injector.get<TelemetryService>(TelemetryService).sendMsg(message);
   }
   
 }

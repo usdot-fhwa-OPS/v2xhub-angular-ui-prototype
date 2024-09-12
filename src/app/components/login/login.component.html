@@ -1,5 +1,22 @@
 <app-header></app-header>
 
 <div class="login" >
-    <app-auth-button></app-auth-button>
+    <mat-tab-group mat-accent mat-stretch-tabs="false" >
+        <mat-tab mat-accent label="Legacy Login">
+            <div class="login-input">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput [(ngModel)]="userCred.username">
+            </div>
+            <div class="login-input">
+                <mat-label>Password</mat-label>
+                <input type="text" matInput [(ngModel)]="userCred.password">
+            </div>
+            <div class="login-input">
+                <button type="button" class="btn btn-outline-dark" (click)="login()" >Login</button>
+            </div>
+        </mat-tab>
+        <mat-tab mat-accent label="SSO with Auth0">
+            <app-auth-button></app-auth-button>
+        </mat-tab>
+    </mat-tab-group>
 </div>
