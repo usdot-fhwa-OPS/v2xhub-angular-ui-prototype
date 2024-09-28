@@ -8,12 +8,13 @@ import { HeaderComponent } from "../header/header.component";
 import { PluginConfigurationChange } from '../../events/plugin.configuration.change';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @Component({
   selector: 'app-plugins',
   standalone: true,
-  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent, MatButtonToggleModule , MatTabsModule],
+  imports: [FormsModule, PluginComponent, NgFor, HeaderComponent, MatButtonToggleModule , MatTabsModule, DashboardComponent],
   templateUrl: './plugins.component.html',
   styleUrl: './plugins.component.css'
 })
@@ -30,7 +31,7 @@ export class PluginsComponent {
       this.updateDisplayedPlugins();
     })
   }
-  
+
   updateConfiguration(pluginConfigChange: PluginConfigurationChange): void {
     this.pluginService.updatePluginConfiguration(pluginConfigChange);
   }
@@ -44,5 +45,5 @@ export class PluginsComponent {
       }
     }
   }
-  
+
 }
