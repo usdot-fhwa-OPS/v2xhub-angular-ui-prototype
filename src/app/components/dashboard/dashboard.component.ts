@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8888/grafana/dashboards?theme=light');
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8888/grafana/dashboards?theme=light&kiosk=1');
   }
 
 }
