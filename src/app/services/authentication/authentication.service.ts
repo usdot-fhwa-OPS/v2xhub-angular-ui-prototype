@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
 
   constructor(private telemetryService: TelemetryService, private router: Router    ) { }
-  
+
   private isAuthenticated: boolean = false;
 
   private level: number = 0 ;
@@ -36,7 +36,6 @@ export class AuthenticationService {
   }
 
   loginResponse(response: Login): void {
-    console.log("Login Response : " + response);
     let status = response.status;
     let command = response.command
     if (status.toUpperCase() == "SUCCESS" && command.toUpperCase() == "LOGIN") {
@@ -44,11 +43,11 @@ export class AuthenticationService {
       this.level = response.level;
       this.router.navigate(['/'])
     }
-    
+
   }
 
   isLoggedIn(): boolean {
     return this.isAuthenticated;
   }
- 
+
 }
