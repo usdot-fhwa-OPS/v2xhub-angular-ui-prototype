@@ -36,7 +36,6 @@ export class AuthenticationService {
   }
 
   loginResponse(response: Login): void {
-    console.log("Login Response : " + JSON.stringify(response));
     let status = response.status;
     let command = response.command
     if (status.toUpperCase() == "SUCCESS" && command.toUpperCase() == "LOGIN") {
